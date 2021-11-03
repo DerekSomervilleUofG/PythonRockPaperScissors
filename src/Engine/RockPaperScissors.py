@@ -11,6 +11,7 @@ class RockPaperScissors:
     computerInput = InputRandom()
     config = None
     property = None
+    userName = ""
 
     def __init__(self,config=ConfigFromFile()):
         self.config = config
@@ -30,10 +31,11 @@ class RockPaperScissors:
         self.property = config.getConfig()
 
     def determineWinner(self,player,computer):
+        userName = self.userName
         if player == computer:
             result = "Draw"
         elif (player + 1)%3 == computer:
-            result = "Player wins"
+            result = userName + " wins"
         elif (computer + 1)%3 == player:
             result = "Computer Wins"
         return result
@@ -47,9 +49,18 @@ class RockPaperScissors:
     def getUserChoice(self,weapons):
         request = self.getUserChoiceRequest(weapons)
         player = self.userInput.getInputInt(request)
+        userName = self.userName
         if player in [0,1,2]:
-            self.userOutput.print("You selected " + weapons[player])
+            self.userOutput.print(userName + " selected " + weapons[player])
         return player
+
+    def getUserNameRequest(self):
+        request = "Please enter your name "
+        playerName = self.userInput.getInputString(request)
+        if playerName == "":
+            self.userName = "John Smith"
+        else:
+            self.userName = playerName
 
     def getComputerChoice(self, weapons):
         chosen = self.computerInput.getInputInt("")
@@ -92,6 +103,7 @@ class RockPaperScissors:
         return weaponsLists[userGame]
 
     def play(self):
+        self.getUserNameRequest()
         weapon = self.getGame()
         player = self.getUserChoice(weapon)
         while player in [0,1,2]:
@@ -106,7 +118,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
