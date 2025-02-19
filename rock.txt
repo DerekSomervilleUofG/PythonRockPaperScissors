@@ -1,0 +1,47 @@
+print("Hello Blairdardie Primary School!") 
+
+  
+
+weapons = ["rock","paper","scissors"] 
+
+  
+
+#Select a weapons 
+
+counter = 0 
+
+for weapon in weapons: 
+
+    print(counter, weapon) 
+
+    counter += 1 
+
+weapon = int(input("Please select a weapon")) 
+
+print("You have", weapons[weapon]) 
+
+  
+
+#Computer selects weapon 
+
+import random 
+
+computer = random.randint(0,2) 
+
+print("Computer has", weapons[computer]) 
+
+  
+
+#Check who won 
+
+if weapon == computer: 
+
+    print("Draw") 
+
+elif weapon == (computer + 1) % 3: 
+
+    print("You won") 
+
+else: 
+
+    print("Computer won") 
